@@ -27,8 +27,8 @@ def get_model():
             self.on_finalized_text(printable_text, stream_end=False)
             # self.on_finalized_text(printable_text, stream_end=True)
     model_path = "maheer/creek"
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    model = AutoModelForCausalLM.from_pretrained(model_path).to(device)
+    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True).to(device)
     model = model.eval()
     streamer = FastapiTaskStramer(tokenizer, skip_prompt=True, timeout=180)
     messages = [
