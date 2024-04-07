@@ -1,12 +1,12 @@
 import streamlit as st
 from threading import Thread
-
+import torch
 st.set_page_config(
     page_title="creek model 演示(暂未训练多轮对话)",
     page_icon=":robot:",
     layout='wide'
 )
-device = "cuda:0"
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 st.title("Creek")
 
 @st.cache_resource
