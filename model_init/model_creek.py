@@ -549,6 +549,7 @@ class creekForCausalLM(creekPreTrainedModel):
         loss = None
         if labels is not None:
             # Shift so that tokens < n predict n
+            # 最后一个token对应的feature关注到所有token的信息
             shift_logits = logits[..., :-1, :].contiguous()
             shift_labels = labels[..., 1:].contiguous()
             # Flatten the tokens
